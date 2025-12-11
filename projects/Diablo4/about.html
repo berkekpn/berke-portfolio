@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hakkında - Diablo 4</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- Google Fonts'u Ekleme -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<style>
+        /* Genel yazı tipi ve renkler */
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #ddd;
+            background-color: #1a1a1a;
+        }
+
+        /* Açılır pencere için stil */
+        .collapsible-button {
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            text-align: left;
+            width: 100%;
+            font-size: 1em;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+		.collapsible-content {
+    	max-height: 0; /* Kapalı olduğunda içerik görünmesin */
+    	overflow-y: auto; /* Yüksekliği aşan içerik için kaydırma çubuğu */
+    	transition: max-height 0.5s ease; /* Yumuşak açılma/kapanma geçişi */
+    	padding: 0 10px;
+}
+
+
+
+        .collapsible-content.open {
+            max-height: 1000px; /* İçeriğe göre ayarlanabilir */
+            padding: 10px;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            color: #00e1ff;
+        }
+
+		.patch-notes {
+    max-height: 400px; /* Görüntülenecek maksimum yükseklik */
+    overflow-y: auto; /* Dikey kaydırma çubuğu */
+    padding: 10px;
+    background-color: #222; /* İsteğe bağlı, patch notes alanı için arka plan */
+    border: 1px solid #444; /* İsteğe bağlı, çerçeve */
+}
+
+    </style>
+</head>
+<body>
+    <div class="page page-about">
+        <div class="header">
+            <div>
+                <a href="index.html" id="logo"><img src="images/logo.png" alt="log"></a>
+                <span>Diablo 4 ile Karanlık Maceların Keyfine Bakın</span>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a> <span>Diablo'ya hızlı erişim</span></li>
+                    <li class="selected"><a href="about.html">Hakkında</a> <span>Diablo'yı Keşfet</span></li>
+                    <li><a href="news.html">Haberler</a> <span>Gelişmelerden haberdar ol</span></li>
+                    <li><a href="contact.html">İletişim</a> <span>Bize ulaşın.</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="body">
+            <div class="about">
+                <!-- Açılır kapanır bölümler -->
+                <button class="collapsible-button">2.0.4a Yapı #59238 (Bütün Platformlar) - Ocak 30, 2024
+					<span class="toggle-icon">+</span>
+				</button>
+                <div class="collapsible-content">
+                    <h3>Hatalar Düzeltildi</h3>
+                    <p>* Çeşitli stabilite ve görsel iyileştirmeler.</p>
+                </div>
+
+               <!-- İlk bölüm -->
+			   <button class="collapsible-button">2.0.04 Yapı #59036 (Sadece bilgisayar için) - Ocak 29, 2024 
+				<span class="toggle-icon">+</span>
+			</button>
+			<div class="collapsible-content">
+					<h3>Vesel of Hatred Genişletme Güncellemeleri</h3>
+
+					 <p>Nefret Gemisi Genişlemesi
+						Varyana'nın edinme görevi sırasındaki sağlığı azaldı.
+						Kurast Yeraltı Şehri'ndeki Portal Şakacı sandıkları da artık aktif Pazarlıktan etkileniyor.
+						Rotasyona ek Nahantu temalı Yükleme Ekranları eklendi.
+						Undercity of Kurast Tributes'un açıklamaları netlik sağlamak amacıyla iyileştirildi.</p><br>
+
+						<h3>Vessel of Nefret Hata Düzeltmeleri</h3>
+
+						<p>Karanlık Kale
+							Karanlık Kale'de birden fazla eksik veya yanlış araç ipucu ve simge örneği düzeltildi.
+							Khazra Kozmetik Eldiveni öğesinin kurtarılıp kaybolmasına neden olan sorun çözüldü.
+							Oyun kumandasında oynarken Topluluk Mücadelesi kaidesiyle etkileşime geçilememesi sorunu düzeltildi.
+							Enclave of Strife'ı tamamlamanın, Labyrinth of Souls'un kilidini açamaması sorunu düzeltildi.
+							Karanlık Kale'nin tamamlanması için Kozmetik ödüllerin bazen düzgün şekilde verilmemesi sorunu düzeltildi.
+							Faeroch'un Maze Malaise'i tutarlı bir şekilde kullanmaması sorunu düzeltildi.
+							Hızlanan Rüzgar Tütsüsünden gelen yüklerin süresinin gerektiği gibi dolmaması sorunu düzeltildi.
+							Karanlık Kale'deki Göz Alıcı Sandıkların, Kale Parası önbelleklerini düşürmemesi sorunu düzeltildi.</p><br>
+
+							<h3>Kurast Yeraltı Şehri</h3>
+							<p>Belirli bir saldırı kullanıldığında Longtooth'un geçici olarak görünmez hale gelmesi sorunu düzeltildi.
+								Birincil Kaynak pazarlığının ilgili ekte eşya düşmesini garanti etmemesi sorunu düzeltildi.
+								Parti aktif bir Kurast Undercity koşusundayken oyuncuların bir partiye katılabilme sorunu düzeltildi.
+								Undercity koşusunun sonunda oyuncuların partiye katılıp ödülleri toplayabilmesi sorunu düzeltildi.
+								Undercity tanıtım görevleri için grupta yalnızca bir oyuncunun kredi alması sorunu düzeltildi.
+								Undercity koşularının zamanlayıcı etkinleştirilmeden başlatılabilmesine neden olan nadir bir sorun düzeltildi.
+								Ruh Kurtları gibi çeşitli Çağrılan yoldaşların ölürken veya ortadan kaybolurken Uyumlama verebilme sorunu düzeltildi.
+								Tribute of Titans'ın açıklamasında Lair Boss'ların yanı sıra başka kaynakların yer almaması sorunu düzeltildi.</p>
+
+								<h3>Paralı Askerler</h3>
+								<p>Aynı paralı askerin aynı anda işe alınmış ve askere alınmış olarak gösterilebilmesi sorunu düzeltildi.
+									Zulmog ile konuştuktan sonra Varyana'nın edinim görevi sırasında ilerlemenin engellenebilmesi sorunu düzeltildi.
+									Bir Paralı Askerin Pasif yeteneğinden kazanılan Bonus istatistiklerinin, onları yok ettikten sonra da devam edebilmesi sorunu düzeltildi.
+									Takas görevinin ödül vermemesi sorunu düzeltildi.
+									Takas kilidinin nasıl açılacağının açıkça bildirilmemesi sorunu düzeltildi</p>
+
+									<h3>Helltide ve Kaleler</h3>
+									<p>Bir Helltide sona erdikten sonra Blood Maiden'ı yenmenin ilgili Şampiyonun Deeds görevi hedefini ilerletmemesi sorunu düzeltildi.
+										Chakhir'deki canavarların amaçlanandan daha az Deneyim vermesi sorunu düzeltildi.</p>
+
+										<h3>Zindanlar</h3>
+										<p>Unutulmuş Kalıntılar'ın sonunda hasar verilmediğinde Bloodhorn's Vortex'in görsel efektlerinin devam edebilmesi sorunu düzeltildi.
+											Güneşte Pişmiş Gözetleme Mahzeni'nin tamamlanamaması sorunu düzeltildi.</p>
+
+											<h3>Ruhdoğumlu</h3>
+											<p>Spiritborn karakterlerinin Aç Nekrolit Önbelleğini kullanamaması sorunu düzeltildi.
+												Ek Kaçış yükleri kazandıran botlarla birlikte Hızlanma puanlarına sahip olmanın, binerken Kaçış yüklerinin tüketilmesine neden olabilmesi sorunu düzeltildi.
+												Harmony of Ebewaka tarafından uygulanan Ruh Salonu değişikliklerinin binekteyken veya şehirdeyken uygun Becerilerde görüntülenmemesi sorunu düzeltildi.
+												Saptırma Unsurunun verilen hasarı göstermeme sorunu düzeltildi.</p>
+
+												<h3>Görevler ve Etkinlikler</h3>
+												<p>Thrust into the Dark görevi sırasında oyuncunun geçilemez bir barikatın arkasında yeniden doğabilmesi sorunu düzeltildi.
+													Bazı Nahantu yan görevlerinin şöhret ödülleri vermeme sorunu düzeltildi.
+													Akarat'ın Gücünü Topla hedefi atlandığında Tüm İyi Şeyler görevinin ilerleyememe sorunu düzeltildi.
+													Bilinmeyen Hayatta Kalanlar görevinde oyuncunun kaçınılmaz bir alanda yeniden doğabileceği bir sorun düzeltildi.
+													Seviye 40 gereksinimi olan bir İksir üretmenizi gerektirmesine rağmen Tarihin Ölçekleri görevinin Seviye 20'de kullanılabilir hale gelmesi sorunu düzeltildi.
+													Nefret Habercisi'nin nadir durumlarda yenilmez bir durumda sıkışıp kalması sorunu düzeltildi.
+													Yaşayan Hafıza görevi sırasında Gömülü Oda'dan ayrıldıktan sonra tüm canavarların Urivar'ın Emirlerini düşürebilmesi sorunu düzeltildi.
+													Neyrelle'in Burning Crusade görevi sırasında sıkışıp kalarak ilerlemeyi engelleyebileceği nadir bir sorun düzeltildi.
+													Oyuncu, çağırılmış Skeletal Skirmishers'lı bir Necromancer kullanıyorsa, The Way Out is Through görevi sırasında takipçilerin attan inememesi sorunu düzeltildi.
+													Görevlerden ödüllendirilen eşyaların hatalı veya eksik eklere sahip olması sorunu düzeltildi.
+													Putrid Bodypit mahzeninde ortaya çıktığında Tapınak Pusu olayının tamamlanamaması sorunu düzeltildi.</p>
+
+													<h3>Miscellaneous</h3>
+													<p>Pit gibi ekipman kilitli içeriklerde Mücevherlerin ve Rünlerin değiştirilebilmesi veya Yuvalardan kaldırılabilmesi sorunu düzeltildi.
+														Takas yoluyla elde edilen Botların doğal Kaçış değiştirici ekinin eksik olması sorunu düzeltildi.
+														Kuyumcunun Kurast Eğitim Alanı odasında bulunması sorunu düzeltildi.</p>
+				 </div>
+
+                <button class="collapsible-button">2.0.3c Yapı #58989 (Bütün platformlar) - Ocak 23, 2024
+					<span class="toggle-icon">+</span>
+				</button>
+                <div class="collapsible-content">
+                    <h3>Hatalar Düzeltildi</h3>
+                    <p>Çeşitli stabilite iyileştirmeleri.</p>
+                </div>
+
+                <button class="collapsible-button">2.0.3b Yapı #58904 (Bütün platformlar) - Ocak 21, 2024
+					<span class="toggle-icon">+</span>
+				</button>
+                <div class="collapsible-content">
+                    <p>Hydra'ların Nightmare Dungeons'ta Obducite'i düşürmesine neden olan sorun çözüldü.</p>
+                </div>
+
+				  <button class="collapsible-button">2.0.3 Yapı #58904 (Bütün platformlar) - Ocak 17, 2024
+					<span class="toggle-icon">+</span>
+				  </button>
+				  <div class="collapsible-content">
+					<h3>Oyun Güncellemeleri</h3><br>
+
+					<h3>Kullanıcı Arayüzü ve Kullanıcı Deneyimi</h3>
+					  <p>Rünlerin üretim bildirimi artık kullanılan Rünler yerine neyin üretildiğini gösteriyor.
+						Kuyumcuda rastgele Rünler üretmeye yönelik tarifler artık her tarif için gereken Rünleri içeriyor.
+						Yuvalardaki Rünleri ve Mücevherleri değiştirmeye yönelik ipucunda artık bu bağlamda "soket" yerine "takas" yazıyor.
+						Rünler ve Rün Kelimeleri için ipuçları, etkilerini daha iyi iletecek şekilde güncellendi.
+						MasterWorking ipucu artık öğenin Masterwork edilebilmesi için iki kez Temperlenmesi gerektiğini gösteriyor.
+						Malzemelerin işlenmesine yönelik çeşitli araç ipuçları ve simgeler, daha iyi okunabilirlik için güncellendi.
+						Infernal Hordes ve Kurast Undercity artık Party Finder menüsünde Pit ve Dark Citadel gibi etkinliklerin yanı sıra en üst düzeydeki etkinliklerde yer alacak.
+						Glif Yuvaları simgesi Paragon Panolarında görsel olarak daha belirgin olacak şekilde ayarlandı.
+						Fiziksel Olmayan hasar istatistiği Karakter İstatistikleri penceresinden kaldırıldı.</p>
+				  </div>
+
+                <button class="collapsible-button">2.0.2f Yapı #59238 (Bütün Platformlar) - Ocak 15, 2024
+					<span class="toggle-icon">+</span>
+				</button>
+                <div class="collapsible-content">
+                    <h3>Hatalar Düzeltildi</h3>
+                    <p>Çeşitli stabilite ve görsel iyileştirmeler.</p>
+                </div>
+
+                <button class="collapsible-button">2.0.2e Yapı #59238 (Xbox ve Playstation) - Ocak 14, 2024
+					<span class="toggle-icon">+</span>
+				</button>
+                <div class="collapsible-content">
+                    <h3>Hatalar Düzeltildi</h3>
+                    <p>Çeşitli stabilite ve görsel iyileştirmeler.</p>
+                </div>
+
+                <button class="collapsible-button">2.0.2d Yapı #59238 (Bütün Platformlar) - Ocak 14, 2024
+					<span class="toggle-icon">+</span>
+				</button>
+                <div class="collapsible-content">
+                    <h3>Miscellaneous</h3>
+                    <p>Bu güncelleme, çeşitli kararlılık sorunlarını gidermek için ek arka uç günlük kaydı içerir.</p>
+                </div>
+            </div>
+
+            <!-- Diğer sayfa bileşenleri -->
+            <div class="sidebar">
+                <h4>Öne Çıkanlar</h4>
+                <ul>
+                    <li>
+                        <a href="news.html"><img src="images/fireman11.jpg" alt=""></a>
+                        <div>
+                            <h3>Demon Hunter: Gölgelerin Korkusu ve Hız</h3>
+                            <p>Diablo 4’ün güçlü karakterlerinden biri olan Demon Hunter...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="news.html"><img src="images/fireman12.jpg" alt=""></a>
+                        <div>
+                            <h3>Barbarian: Güç ve İhtişam</h3>
+                            <p>Barbarian, savaş alanının efendisi olarak tanınır...</p>
+                        </div>
+                    </li>
+                </ul>
+                <h4>Yenilikler için kayıt olun</h4>
+                <form action="kayıtol.html">
+                    <input type="text" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email adresinizi giriniz':this.value;" value="Email adresinizi giriniz" id="email">
+                    <input type="submit" value="Kaydol">
+                </form>
+            </div>
+
+            <div class="section">
+                <div>
+                    <h4>Galeri</h4>
+                    <ul>
+                        <li><a href="gallery.html"><img src="images/fireman1.jpg" alt=""></a></li>
+                        <li><a href="gallery.html"><img src="images/fireman2.jpg" alt=""></a></li>
+                        <li><a href="gallery.html"><img src="images/fireman3.jpg" alt=""></a></li>
+                    </ul>
+                </div>
+                <div class="connect">
+                    <h4>Sosyal Medya Hesaplarımız</h4>
+                    <a href="https://x.com/diablo" id="twitter">twitter</a>
+                    <a href="https://www.facebook.com/Diablo.eu/?brand_redir=138017306210500" id="fb">fb</a>
+                    <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
+                    <a href="https://www.youtube.com/@Diablo/featured" id="vimeo">vimeo</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="about.html">Hakkında</a></li>
+                    <li><a href="news.html">Haberler</a></li>
+                    <li><a href="contact.html">Ulaşım Bilgileri</a></li>
+                </ul>
+                <p>&#169; Copyright &#169; 1955. Diablo 4 Bütün hakları saklıdır.</p>
+            </div>
+        </div>
+    </div>
+
+	<script>
+		// Tüm collapsible butonları seç ve her birine tıklama işlevi ekle
+		document.querySelectorAll('.collapsible-button').forEach(button => {
+			button.addEventListener('click', () => {
+				// Butonun hemen sonraki sibling'i olan collapsible içeriği seç
+				const content = button.nextElementSibling;
+				const icon = button.querySelector('.toggle-icon');
+	
+				// İçeriği aç/kapat
+				content.classList.toggle('open');
+	
+				// İçerik açıkken simgeyi "-" yap, kapalıyken "+"
+				if (content.classList.contains('open')) {
+					content.style.maxHeight = "400px"; // Açıldığında yüksekliği sınırlı yap
+					icon.textContent = '-';
+				} else {
+					content.style.maxHeight = "0"; // Kapandığında yüksekliği 0 yap
+					icon.textContent = '+';
+				}
+			});
+		});
+	</script>
+	
+</body>
+</html>

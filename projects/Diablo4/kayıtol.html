@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol / Giriş Yap - Diablo 4</title>
+    <style>
+        /* Genel ayarlar ve body arka planı */
+        :root {
+            --background-color: #f0f2f5;
+            --text-color: #000;
+        }
+        [data-theme="dark"] {
+            --background-color: #000;
+            --text-color: #fff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('images/sitekayıtol.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        /* Karanlık overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            color: #ffffff;
+            transition: opacity 0.3s ease;
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .button-link {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: #000000;
+            background-color: #ffffff;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-link:hover {
+            color: #ffffff;
+            background-color: #000000;
+        }
+
+        .switch-form {
+            margin-top: 20px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+
+        /* Şifre gücü göstergesi */
+        .strength-bar {
+            width: 100%;
+            height: 5px;
+            margin-top: 5px;
+            background-color: #ccc;
+        }
+
+        /* Sosyal medya giriş butonları */
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .social-login a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #000;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-login img {
+            width: 25px;
+            height: 25px;
+            margin-right: 8px;
+        }
+
+        /* Modal pencere */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: #000;
+        }
+
+        /* Tema düğmesi */  
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #fff;
+            color: #000;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hamburger Menü düğmesi */
+.menu-icon {
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #000000;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+/* Yan Menü (Sidebar) */
+.sidebar {
+    width: 250px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 60px;
+    padding-left: 20px;
+    font-family: 'Arial', sans-serif;
+    transform: translateX(-100%);
+}
+
+/* Yan menü başlığı */
+.sidebar h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Menü bağlantıları */
+.sidebar a {
+    display: block;
+    color: #d1d1d1;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 0;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Zarif hover efekti */
+.sidebar a:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 5px; /* Hafif sola kayma efekti */
+}
+
+/* Aktif bağlantı efekti */
+.sidebar.active {
+    transform: translateX(0); /* Açıkken sol konuma gelir */
+    transition: transform 0.3s ease;
+}
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- Hamburger Menü İkonu -->
+<div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+
+<!-- Sidebar İçeriği -->
+<div class="sidebar" id="sidebar">
+    <h2>Menü</h2>
+    <a href="index.html">Anasayfa</a>
+    <!-- Diğer bağlantılar buraya eklenecek -->
+</div>
+
+    
+
+
+    <!-- Tema Değiştirme Düğmesi -->
+    <button class="theme-toggle" onclick="toggleTheme()">Karanlık Mod</button>
+
+    <div class="container" id="register-container">
+        <h2>Kayıt Ol</h2>
+        <form id="register-form" onsubmit="return validateRegisterForm()">
+            <div class="input-group">
+                <input type="text" id="register-username" placeholder="Kullanıcı Adı" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="register-email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="register-password" placeholder="Şifre" required oninput="checkPasswordStrength(this.value)">
+                <span class="toggle-password" onclick="togglePassword('register-password')">👁️</span>
+            </div>
+            <progress id="strength-bar" class="strength-bar" max="5"></progress>
+
+            <label for="captcha">21 - 14 = ?</label>
+            <input type="text" id="captcha" placeholder="Yanıt" required>
+            
+            <a class="button-link" onclick="validateRegisterForm()">Kayıt Ol</a>
+            <p class="error-message" id="register-error"></p>
+            <p class="success-message" id="register-success"></p>
+        </form>
+        
+        <div class="social-login">
+            <a href="https://accounts.google.com/signin" target="_blank">
+                <img src="images/google-icon.png" alt="Google">
+            </a>
+            <a href="https://www.icloud.com/" target="_blank">
+                <img src="images/apple-icon.png" alt="Apple">
+            </a>
+            <a href="https://store.steampowered.com/login/" target="_blank">
+                <img src="images/steam-icon.png" alt="Steam">
+            </a>
+        </div>
+        
+        <p class="switch-form" onclick="toggleForms()">Zaten hesabınız var mı? Giriş Yap</p>
+    </div>
+
+    <div class="container hidden" id="login-container" style="display: none;">
+        <h2>Giriş Yap</h2>
+        <form id="login-form" onsubmit="return validateLoginForm()">
+            <div class="input-group">
+                <input type="text" id="login-username" placeholder="Kullanıcı Adı" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Şifre" required>
+                <span class="toggle-password" onclick="togglePassword('login-password')">👁️</span>
+            </div>
+            <a class="button-link" onclick="validateLoginForm()">Giriş Yap</a>
+            <p class="error-message" id="login-error"></p>
+            <p class="success-message" id="login-success"></p>
+        </form>
+        
+        <div class="social-login">
+            <a href="https://accounts.google.com/signin" target="_blank">
+                <img src="images/google-icon.png" alt="Google">
+            </a>
+            <a href="https://appleid.apple.com/auth/authorize" target="_blank">
+                <img src="images/apple-icon.png" alt="Apple">
+            </a>
+            <a href="https://store.steampowered.com/login/" target="_blank">
+                <img src="images/steam-icon.png" alt="Steam">
+            </a>
+        </div>
+
+        <p class="switch-form" onclick="toggleForms()">Hesabınız yok mu? Kayıt Ol</p>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <p>İşleminiz başarıyla gerçekleştirildi!</p>
+            <button onclick="closeModal()">Tamam</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            const registerContainer = document.getElementById("register-container");
+            const loginContainer = document.getElementById("login-container");
+            
+            if (registerContainer.style.display === "none") {
+                registerContainer.style.display = "block";
+                loginContainer.style.display = "none";
+            } else {
+                registerContainer.style.display = "none";
+                loginContainer.style.display = "block";
+            }
+        }
+
+        function validateLoginForm() {
+            const username = document.getElementById("register-username").value;
+            const password = document.getElementById("register-password").value;
+            const errorMessage = document.getElementById("register-error");
+            const successMessage = document.getElementById("register-success");
+
+            errorMessage.textContent = "";
+            successMessage.textContent = "Başarıyla giriş yapıldı!";
+            showModal();
+
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 3000);
+
+            return false;
+
+        }
+
+        function togglePassword(inputId) {
+            const passwordField = document.getElementById(inputId);
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+
+        function checkPasswordStrength(password) {
+            const strengthBar = document.getElementById("strength-bar");
+            let strength = 0;
+            if (password.length >= 6) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[@$!%*?&#]/.test(password)) strength += 1;
+            strengthBar.value = strength;
+        }
+
+        function validateCaptcha() {
+            return document.getElementById("captcha").value === "7";
+        }
+
+        function validateRegisterForm() {
+            const username = document.getElementById("register-username").value;
+            const email = document.getElementById("register-email").value;
+            const password = document.getElementById("register-password").value;
+            const errorMessage = document.getElementById("register-error");
+            const successMessage = document.getElementById("register-success");
+
+            if (!username || !email || !password || !validateCaptcha()) {
+                errorMessage.textContent = "Lütfen tüm alanları doğru doldurun!";
+                return false;
+            }
+
+            errorMessage.textContent = "";
+            successMessage.textContent = "Başarıyla kayıt olundu!";
+            showModal();
+
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 3000);
+
+            return false;
+        }
+
+        function showModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem("theme");
+            const newTheme = currentTheme === "dark" ? "" : "dark";
+            document.body.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+                document.body.setAttribute("data-theme", savedTheme);
+            }
+        });
+
+        function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
+}
+
+    </script>
+</body>
+</html>

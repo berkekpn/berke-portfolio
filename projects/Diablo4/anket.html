@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anket Sayfası</title>
+    <style>
+        /* Genel Stil */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('images/wallpaperflare.com_wallpaper.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            filter: brightness(1.2);
+        }
+
+        /* Anket Kutusu Stil */
+        .survey-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Koyu ve transparan */
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            padding: 30px 40px;
+            backdrop-filter: blur(10px); /* Arka planı bulanıklaştır */
+        }
+
+        /* Başlık ve Açıklama */
+        .survey-container h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .survey-container p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        /* Sorular */
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question label {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .question:hover {
+            color: #ffffff; /* Hover sırasında yazı rengi değişimi */
+        }
+
+        /* Gönder ve Ana Sayfaya Dön Butonları */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .submit-btn, .home-btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff0000, #3b3b3b);
+            border: none;
+            color: #000;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #ff0000, #ffffff);
+            transform: scale(1.05);
+        }
+
+        .home-btn {
+            background: linear-gradient(45deg, #4CAF50, #3b3b3b);
+            border: none;
+            color: white;
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(45deg, #4CAF50, #ffffff);
+            transform: scale(1.05);
+        }
+
+        /* Pop-up için stil */
+        .popup {
+            position: fixed;
+            top: 50px; /* Üstten biraz mesafe */
+            right: 20px; /* Sağdan mesafe */
+            background-color: #4CAF50; /* Yeşil renk */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            z-index: 1000; /* Pop-up'ın üstte olmasını sağlamak */
+        }
+
+        .popup.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <h1>Katılım Anketi</h1>
+        <p>Lütfen aşağıdaki soruları yanıtlayarak görüşlerinizi bizimle paylaşın.</p>
+
+        <form id="survey-form">
+            <!-- Soru 1 -->
+            <div class="question">
+                <label>1. Diablo 4 oyunundan ne kadar memnunsunuz?</label>
+                <input type="radio" name="q1" value="Çok Memnunum"> Çok Memnunum<br>
+                <input type="radio" name="q1" value="Memnunum"> Memnunum<br>
+                <input type="radio" name="q1" value="Kararsızım"> Kararsızım<br>
+                <input type="radio" name="q1" value="Memnun Değilim"> Memnun Değilim
+            </div>
+
+            <!-- Soru 2 -->
+            <div class="question">
+                <label>2. Hangi karakter sınıfını tercih ediyorsunuz?</label>
+                <input type="radio" name="q2" value="Barbarian"> Barbarian<br>
+                <input type="radio" name="q2" value="Sorcerer"> Sorcerer<br>
+                <input type="radio" name="q2" value="Druid"> Druid<br>
+                <input type="radio" name="q2" value="Necromancer"> Necromancer
+            </div>
+
+            <!-- Soru 3 -->
+            <div class="question">
+                <label>3. Oyun içi etkinliklerden ne kadar memnunsunuz?</label>
+                <input type="radio" name="q3" value="Çok Memnunum"> Çok Memnunum<br>
+                <input type="radio" name="q3" value="Memnunum"> Memnunum<br>
+                <input type="radio" name="q3" value="Kararsızım"> Kararsızım<br>
+                <input type="radio" name="q3" value="Memnun Değilim"> Memnun Değilim
+            </div>
+
+            <!-- Soru 4 -->
+            <div class="question">
+                <label>4. Oyunun grafikleri hakkındaki düşünceleriniz?</label>
+                <input type="radio" name="q4" value="Mükemmel"> Mükemmel<br>
+                <input type="radio" name="q4" value="İyi"> İyi<br>
+                <input type="radio" name="q4" value="Orta"> Orta<br>
+                <input type="radio" name="q4" value="Kötü"> Kötü
+            </div>
+
+            <!-- Yeni Soru 1 -->
+            <div class="question">
+                <label>5. Oyunun ses tasarımını nasıl buluyorsunuz?</label>
+                <input type="radio" name="q5" value="Mükemmel"> Mükemmel<br>
+                <input type="radio" name="q5" value="İyi"> İyi<br>
+                <input type="radio" name="q5" value="Orta"> Orta<br>
+                <input type="radio" name="q5" value="Kötü"> Kötü
+            </div>
+
+            <!-- Yeni Soru 2 -->
+            <div class="question">
+                <label>6. Oyunun hikayesi hakkında ne düşünüyorsunuz?</label>
+                <input type="radio" name="q6" value="Çok İyi"> Çok İyi<br>
+                <input type="radio" name="q6" value="İyi"> İyi<br>
+                <input type="radio" name="q6" value="Orta"> Orta<br>
+                <input type="radio" name="q6" value="Kötü"> Kötü
+            </div>
+
+            <!-- Yeni Soru 3 -->
+            <div class="question">
+                <label>7. Diablo 4'ün en sevdiğiniz özelliği nedir?</label>
+                <textarea name="q7" rows="4" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+            </div>
+
+            <!-- Butonlar -->
+            <div class="btn-container">
+                <button type="submit" class="submit-btn">Gönder</button>
+                <a href="index.html"><button type="button" class="home-btn">Ana Sayfaya Dön</button></a>
+            </div>
+
+            <div class="popup" id="popup">
+                Anketiniz başarıyla gönderilmiştir.
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("survey-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Formun gönderilmesini durdur
+    
+            // Pop-up'ı göster
+            const popup = document.getElementById("popup");
+            popup.classList.add("show");
+    
+            // Pop-up'ı 3 saniye sonra gizle ve index.html sayfasına yönlendir
+            setTimeout(() => {
+                popup.classList.remove("show");
+                window.location.href = "index.html"; // Yönlendirme
+            }, 3000);
+    
+            // Formu sıfırla
+            event.target.reset();
+        });
+    </script>
+
+</body>
+</html>

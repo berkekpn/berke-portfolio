@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anasayfa - Diablo 4</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+        /* Sağ üst köşede profil gösterme */
+        .profile {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            background-color: #000000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        body.dark-theme {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+       /* Kayıt Ol and Giriş Yap buttons on the top-left */
+.auth-buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 20px; /* Slightly larger gap for spacing */
+}
+
+.auth-buttons .button {
+    background: linear-gradient(45deg, #ff0000, #000000); /* Gradient color */
+    color: #fff;
+    padding: 7px 15px; /* Increased padding for larger buttons */
+    text-decoration: none;
+    border-radius: 10px; /* Slightly larger border radius */
+    font-size: 18px; /* Larger font size */
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.auth-buttons .button:hover {
+    background: linear-gradient(45deg, #ffffff, #000000); /* Slight color change on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4); /* Slightly deeper shadow on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.auth-buttons .button:active {
+    transform: translateY(0px); /* Button returns to original position on click */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Ankete Git! Butonu */
+.survey-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.survey-button a {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff0000, #000000);
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.survey-button a:hover {
+    background: linear-gradient(45deg, #ffffff, #ff0000);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px); /* Hover effect */
+}
+
+.survey-button a:active {
+    transform: translateY(0px);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+    /* Bildirim Butonu */
+    .notification-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .notification-btn::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            color: #ff0000;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-btn .tooltip {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .notification-btn:hover .tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="page page-home">
+
+        <div class="auth-buttons">
+            <a href="kayıtol.html" class="button">Kayıt Ol</a>
+            <a href="kayıtol.html" class="button">Giriş Yap</a>
+        </div>        
+
+        <div class="header">
+            <div>
+                <a href="index.html" id="logo"><img src="images/logo.png" alt="log"></a> <span>Diablo 4 ile Karanlık Maceların Keyfine Bakın</span>
+                <ul>
+                    <li class="selected">
+                        <a href="index.html">Anasayfa</a> <span>Diablo'ya hızlı erişim</span>
+                    </li>
+                    <li>
+                        <a href="about.html">Hakkında</a> <span>Diablo'yı Keşfet</span>
+                    </li>
+                    <li>
+                        <a href="news.html">Haberler</a> <span>Gelişmelerden haberdar ol</span>
+                    </li>
+                    <li>
+                        <a href="contact.html">İletişim</a> <span>Bize ulaşın.</span>
+                    </li>
+                </ul>
+                <div class="featured">
+                </div>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="home">
+                <h4>Son Haberler</h4>
+                <ul>
+                    <li>
+                        <a href="https://news.blizzard.com/en-us/diablo4/24150148/join-a-macabre-celebration-in-sanctuary"><img src="images/icon-logo1.jpg" alt=""></a>
+                        <div>
+                            <p>
+                                Karanlık ve derin bir dünyanın kapıları yeniden açılıyor! Diablo 4, yeni içerikler ve gelişmiş grafiklerle birlikte geliyor.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://news.blizzard.com/en-us/diablo4/24139218/spread-mephisto-s-corruption-with-vases-of-hatred"><img src="images/icon-logo2.jpg" alt=""></a>
+                        <div>
+                            <p>
+                                Diablo 4'teki yeni düşman çeşitleri, oyuncuların stratejilerini test edecek. Küçük düşmanlar, beklenmedik anlarda büyük tehditler haline gelebilir.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://news.blizzard.com/en-us/diablo4/24140808/diablo-iv-patch-notes"><img src="images/icon-logo3.jpg" alt=""></a>
+                        <div>
+                            <p>
+                                Sezon 3 ile birlikte gelen yenilikler, Diablo 4 dünyasını daha da zenginleştiriyor. Yeni görevlerle macera dolu anlar sunacak.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://news.blizzard.com/en-us/diablo4/24145595/a-new-tale-when-akarat-came-to-nahantu"><img src="images/icon-logo4.jpg" alt=""></a>
+                        <div>
+                            <p>
+                                Diablo 4, yaklaşan kış sezonu ile birlikte özel etkinlikler sunacak. Kış temalı görevler, benzersiz ödüller ve sürprizler sizi bekliyor.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar">
+                <h4>Öne Çıkanlar</h4>
+                <ul>
+                    <li>
+                        <a href="news.html"><img src="images/fireman4.jpg" alt=""></a>
+                        <div>
+                            <h3>Yeni Karakter Sınıfları ve Yetenekler!</h3>
+                            <p>
+                                Diablo 4, yeni karakter sınıfları ve yetenek ağaçları ile geliyor. Her sınıf, benzersiz yetenek setleriyle donatılacak. Hangi sınıfı seçeceğinize karar verin ve kendinizi bu karanlık dünyada en iyi şekilde geliştirin!
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="news.html"><img src="images/fireman5.jpg" alt=""></a>
+                        <div>
+                            <h3>Karanlık Temalar ve Derin Hikaye!</h3>
+                            <p>
+                                Diablo 4, Orta Çağ'dan esinlenmiş karanlık temaları ve derin bir hikaye ile oyuncularını büyüleyecek. Yeni karakterlerle tanışacak, onların geçmişine dalacak ve bu dünyada nasıl hayatta kalacağınızı öğrenirken etkileyici hikaye anlatımıyla karşılaşacaksınız.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <h4>Yenilikler için Kayıt Ol</h4>
+                <form action="kayıtol.html">
+                    <input type="text" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Enter e-mail address':this.value;" value="Email adresini gir." id="email">
+                    <input type="submit" value="">
+                </form>
+            </div>
+
+            <div class="section">
+                <div>
+                    <h4>Galeri</h4>
+                    <ul>
+                        <li>
+                            <a href="gallery.html"><img src="images/fireman1.jpg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="gallery.html"><img src="images/fireman2.jpg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="gallery.html"><img src="images/fireman3.jpg" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="connect">
+                    <h4>Sosyal Medya Hesaplarımız</h4>
+                    <a href="https://x.com/diablo" id="twitter">twitter</a>
+                    <a href="https://www.facebook.com/Diablo.eu/?brand_redir=138017306210500" id="fb">fb</a>
+                    <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
+                    <a href="https://www.youtube.com/@Diablo/featured" id="vimeo">vimeo</a>
+                </div>
+            </div>
+
+            <!-- Ankete Git! Butonu -->
+            <div class="survey-button">
+                <a href="anket.html">Ankete Git!</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>
+                <ul>
+                    <li>
+                        <a href="index.html">Anasayfa</a>
+                    </li>
+                    <li>
+                        <a href="about.html">Hakkında</a>
+                    </li>
+                    <li>
+                        <a href="news.html">Haberler</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Ulaşım Bilgileri</a>
+                    </li>
+                </ul>
+                <p>
+                    &#169; Copyright &#169; 1955. Diablo 4 Bütün hakları saklıdır.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profil Bilgisi -->
+    <div class="profile" id="profile">
+        <img src="images/default-avatar.png" alt="Profil Resmi" onclick="location.href='account.html'">
+        <div class="profile-info">
+            <span id="profile-username"></span>
+            <span id="profile-email" style="font-size: 12px; color: #ccc;"></span>
+        </div>
+    </div>
+    <!-- Kullanıcı Yorumları -->
+<div class="user-reviews">
+    <h4>Kullanıcı Yorumları</h4>
+    <div class="review">
+        <p class="review-text">"Diablo 4, mükemmel bir oyun! Karanlık atmosferi ve derin hikayesi ile beni içine çekti."</p>
+        <p class="review-author">- Berke</p>
+    </div>
+    <div class="review">
+        <p class="review-text">"Görseller harika, oyun mekaniği çok akıcı. Gerçekten harika bir deneyim!"</p>
+        <p class="review-author">- Ali</p>
+    </div>
+    <div class="review">
+        <p class="review-text">"Yeni sınıflar ve yetenekler ile her seferinde farklı bir oyun deneyimi yaşıyorum."</p>
+        <p class="review-author">- Ayşe</p>
+    </div>
+</div>
+
+   <!-- Bildirim Butonu -->
+   <div class="notification-btn" onclick="location.href='anket.html'">
+    <span>1</span>
+    <div class="tooltip">Anketimize katılmak ister misiniz?</div>
+</div>
+
+    <script>
+        // Yerel depolamadan kullanıcı bilgilerini al ve göster
+        document.addEventListener("DOMContentLoaded", () => {
+            const username = localStorage.getItem("username");
+            const email = localStorage.getItem("email");
+
+            if (username && email) {
+                document.getElementById("profile-username").textContent = username;
+                document.getElementById("profile-email").textContent = email;
+            } else {
+                // Kullanıcı bilgileri yoksa, kullanıcıyı giriş sayfasına yönlendir
+                // window.location.href = "login.html"; // Giriş sayfası örneği
+            }
+
+            loadWeather();
+        });
+
+        // Hava durumu yükleme fonksiyonu
+        function loadWeather() {
+            // Hava durumu verilerini almak için bir API çağrısı yapılabilir
+            // Örnek hava durumu verisi
+            const weatherData = {
+                location: "İstanbul",
+                temperature: "20°C",
+                condition: "Parçalı bulutlu"
+            };
+            document.getElementById("weather-info").textContent = 
+                `Hava Durumu: ${weatherData.temperature} - ${weatherData.condition} (${weatherData.location})`;
+        }
+
+        // Karanlık/Aydınlık Mod Butonu
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-theme');
+            // Yerel depolamada tema durumunu kaydedin
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        // Kullanıcı Yorumları
+        function submitComment() {
+            const commentInput = document.getElementById("comment-input");
+            const commentDisplay = document.getElementById("comments-display");
+            
+            if (commentInput.value) {
+                const newComment = document.createElement("p");
+                newComment.textContent = commentInput.value;
+                commentDisplay.appendChild(newComment);
+                commentInput.value = ""; // Temizle
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+        // Bildirim sesi dosyasını oluşturma
+        const notificationSound = new Audio("images/arriving.mp3"); // Ses dosyasının yolu
+notificationSound.volume = 0.5; // Ses seviyesini ayarlama
+
+// Sayfa yüklendiğinde bildirimi ve sesi tetikleme
+window.addEventListener("DOMContentLoaded", () => {
+    // Bildirim simgesini gösterme
+    const notificationButton = document.createElement("div");
+    notificationButton.style.position = "fixed";
+    notificationButton.style.bottom = "20px";
+    notificationButton.style.right = "20px";
+    notificationButton.style.width = "50px";
+    notificationButton.style.height = "50px";
+    notificationButton.style.borderRadius = "50%";
+    notificationButton.style.backgroundColor = "#ff0000";
+    notificationButton.style.cursor = "pointer";
+    notificationButton.style.display = "flex";
+    notificationButton.style.justifyContent = "center";
+    notificationButton.style.alignItems = "center";
+    notificationButton.style.color = "#fff";
+    notificationButton.style.fontWeight = "bold";
+    notificationButton.innerText = "1";
+    document.body.appendChild(notificationButton);
+
+    // Ses dosyasını çal
+    notificationSound.play().catch((error) => {
+        console.log("Ses çalınamadı: ", error);
+    });
+
+    // Bildirim butonuna tıklanınca anket sayfasına yönlendirme
+    notificationButton.addEventListener("click", () => {
+        window.location.href = "anket.html"; // Anket sayfasına yönlendir
+    });
+});
+
+        // Butona tıklama olayı
+        notificationButton.addEventListener("click", () => {
+            window.location.href = "anket.html"; // Anket sayfasına yönlendirme
+        });
+
+        document.body.appendChild(notificationButton);
+
+        // Bildirim butonu göründüğünde sesi oynat
+        setTimeout(() => {
+            notificationSound.play();
+        }, 1000); // Anasayfa yüklendikten 1 saniye sonra sesi çal
+    });
+</script>
+</body>
+</html>

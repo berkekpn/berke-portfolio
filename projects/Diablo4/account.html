@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesap Yönetimi</title>
+    <link rel="stylesheet" href="css/account-style.css">
+</head>
+<body style="background-image: url('images/sitekayıtol.jpg'); background-size: cover; background-position: center; background-repeat: repeat;">
+
+    <!-- Hamburger Menü -->
+    <div class="menu-icon" onclick="toggleSidebar()">
+       &#9776; <!-- Üç çizgi ikonu -->
+   </div>
+
+    <div class="sidebar" id="sidebar">
+        <h2 data-lang-key="account-management">Hesap Yönetimi</h2>
+        <button onclick="goToHomePage()" style="background:none; border:none; color:white; cursor:pointer;">Ana Sayfaya Dön</button>
+        <ul>
+            <li><a href="#account-info" data-lang-key="account-info-title">Hesap Bilgileri</a></li>
+            <li><a href="#security" data-lang-key="security">Güvenlik</a></li>
+            <li><a href="#privacy" data-lang-key="privacy-center">Gizlilik merkezi</a></li>
+            <li><a href="#theme" data-lang-key="change-theme">Tema Değiştir</a></li>
+            <li><a href="#language" data-lang-key="language-title">Dil Seçimi</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1 id="welcome-message">Hoş geldiniz, AND_Bekos.!</h1>
+
+        <!-- Profil Resmi Güncelleme -->
+        <div class="section" id="account-info">
+            <h2 data-lang-key="account-info-title">Hesap Bilgileri</h2>
+            <p data-lang-key="account-info-desc">Açık ve özel bilgilerinizi düzenleyin.</p>
+            <form onsubmit="updateInfo(event)">
+                <label for="username" data-lang-key="username">Kullanıcı Adı:</label>
+                <input type="text" id="username" placeholder="Kullanıcı adınızı girin">
+                <label for="email" data-lang-key="email">Email:</label>
+                <input type="email" id="email" placeholder="Email adresinizi girin">
+                <label for="profile-pic" data-lang-key="profile-pic">Profil Resmi:</label>
+                <input type="file" id="profile-pic" onchange="updateProfilePic()">
+                <img id="profile-preview" src="images/default-avatar.png" alt="Profil Resmi" class="profile-preview">
+                <button type="submit" data-lang-key="update-info">Bilgileri Güncelle</button>
+                <p id="update-info-message" class="message"></p>
+            </form>
+        </div>
+
+        <!-- Güvenlik Ayarları -->
+        <div class="section" id="security">
+            <h2 data-lang-key="security">Güvenlik</h2>
+            <p data-lang-key="change-password-desc">Şifrenizi değiştirin ve güvenliğinizi yönetin.</p>
+            <form onsubmit="updatePassword(event)">
+                <label for="password" data-lang-key="new-password">Yeni Şifre:</label>
+                <input type="password" id="password" placeholder="Yeni şifre">
+                <button type="submit" data-lang-key="update-password">Şifreyi Güncelle</button>
+                <p id="update-password-message" class="message"></p>
+            </form>
+            <button onclick="enable2FA()" data-lang-key="enable-2fa">2FA'yı Etkinleştir</button>
+        </div>
+
+        <!-- Gizlilik Ayarları -->
+        <div class="section" id="privacy">
+            <h2 data-lang-key="privacy-center">Gizlilik merkezi</h2>
+            <label>
+                <input type="checkbox" id="email-notifications" onchange="updatePrivacySettings()">
+                <span data-lang-key="email-notifications">E-posta Bildirimlerini Aç</span>
+            </label>
+            <p id="privacy-message" class="message"></p>
+        </div>
+
+        <!-- Tema Değiştirme -->
+        <div class="section" id="theme">
+            <h2 data-lang-key="change-theme">Tema Değiştir</h2>
+            <button onclick="toggleTheme()" data-lang-key="toggle-theme">Açık/Koyu Mod</button>
+        </div>
+
+        <!-- Dil Seçimi -->
+        <div class="section" id="language">
+            <h2 data-lang-key="language-title">Dil Seçimi</h2>
+            <select id="language-select" onchange="updateLanguage()">
+                <option value="tr">Türkçe</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <!-- Sosyal Medya Bağlantıları -->
+        <div class="section" id="social-media">
+            <h2 data-lang-key="social-media">Sosyal Medya Hesaplarıyla Bağlan</h2>
+            <button onclick="connectSocialMedia('Google')" data-lang-key="connect-google">Google ile Bağlan</button>
+            <button onclick="connectSocialMedia('Facebook')" data-lang-key="connect-facebook">Facebook ile Bağlan</button>
+            <button onclick="connectSocialMedia('Apple')" data-lang-key="connect-apple">Apple ile Bağlan</button>
+        </div>
+
+        <!-- Profil Durumu -->
+        <div class="section" id="profile-status">
+            <h2 data-lang-key="profile-status">Profil Durumu</h2>
+            <p><span data-lang-key="current-status">Şu anki Durum:</span> <span id="status-message">Çevrimdışı</span></p>
+            <button onclick="toggleStatus()" data-lang-key="toggle-status">Çevrimiçi/Çevrimdışı</button>
+        </div>
+
+        <!-- Özel Tema Renkleri -->
+        <div class="section" id="custom-theme">
+            <h2 data-lang-key="custom-theme">Özel Tema Renkleri</h2>
+            <label data-lang-key="primary-color">Birincil Renk:</label>
+            <input type="color" onchange="updatePrimaryColor(event)" value="#ffffff">
+            <label data-lang-key="secondary-color">İkincil Renk:</label>
+            <input type="color" onchange="updateSecondaryColor(event)" value="#ffffff">
+        </div>
+
+        <!-- Hesap Yönetimi -->
+        <div class="section" id="account-management">
+            <h2 data-lang-key="account-management">Hesap Yönetimi</h2>
+            <button onclick="deactivateAccount()" data-lang-key="deactivate-account">Hesabı Devre Dışı Bırak</button>
+            <button onclick="deleteAccount()" data-lang-key="delete-account">Hesabı Kalıcı Olarak Sil</button>
+        </div>
+    </div>
+
+    <script>
+        // Ana sayfaya dön
+        function goToHomePage() {
+            window.location.href = "index.html"; // Ana sayfa URL'sini buraya yazın
+        }
+
+        // Menü açma/kapama işlevi
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        }
+
+        // 2 Faktörlü Kimlik Doğrulama
+        function enable2FA() {
+            const code = prompt("Lütfen 2FA kodunuzu girin:");
+            if (code === "123456") { // Örnek kod, gerçekte backend ile doğrulanmalı
+                alert("2 Faktörlü kimlik doğrulama etkinleştirildi.");
+            } else {
+                alert("Geçersiz kod. Lütfen tekrar deneyin.");
+            }
+        }
+
+        // Sosyal Medya Hesaplarıyla Bağlan
+        function connectSocialMedia(platform) {
+            alert(`${platform} hesabınız bağlanmaya çalışılıyor...`);
+            // Örnek: Gerçek yönlendirme ve doğrulama backend ile yapılmalı
+        }
+
+        // Bilgi güncelleme fonksiyonu
+function updateInfo(event) {
+    event.preventDefault();
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    if (username && email) {
+        document.getElementById("update-info-message").textContent = "Bilgiler başarıyla güncellendi!";
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        
+        // Hoş geldin mesajını güncelle
+        document.getElementById("welcome-message").textContent = `Hoş geldiniz, ${username}.!`;
+    } else {
+        document.getElementById("update-info-message").textContent = "Lütfen tüm alanları doldurun.";
+    }
+    }
+
+    // Sayfa Yüklenince Kullanıcı Adını Ayarlama
+document.addEventListener("DOMContentLoaded", () => {
+    const username = localStorage.getItem("username") || "AND_Bekos";
+    document.getElementById("welcome-message").textContent = `Hoş geldiniz, ${username}.!`;
+    
+    // Diğer mevcut ayarlar...
+});
+
+        // Şifre güncelleme fonksiyonu
+        function updatePassword(event) {
+            event.preventDefault();
+            const password = document.getElementById("password").value;
+            if (password) {
+                document.getElementById("update-password-message").textContent = "Şifre başarıyla güncellendi!";
+            } else {
+                document.getElementById("update-password-message").textContent = "Lütfen yeni şifrenizi girin.";
+            }
+        }
+
+        // Profil resmi güncelleme
+        function updateProfilePic() {
+            const file = document.getElementById("profile-pic").files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profile-preview").src = e.target.result;
+                    localStorage.setItem("profile-pic", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Gizlilik ayarları güncelleme
+        function updatePrivacySettings() {
+            const isChecked = document.getElementById("email-notifications").checked;
+            document.getElementById("privacy-message").textContent = isChecked ? 
+                "E-posta bildirimleri açıldı." : "E-posta bildirimleri kapatıldı.";
+            localStorage.setItem("email-notifications", isChecked);
+        }
+
+        // Tema değiştirme
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem("theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            document.body.className = newTheme;
+            localStorage.setItem("theme", newTheme);
+        }
+
+        // Özel Tema Renkleri
+        function updatePrimaryColor(event) {
+            const color = event.target.value;
+            document.documentElement.style.setProperty('--primary-color', color);
+            localStorage.setItem("primaryColor", color);
+        }
+
+        function updateSecondaryColor(event) {
+            const color = event.target.value;
+            document.documentElement.style.setProperty('--secondary-color', color);
+            localStorage.setItem("secondaryColor", color);
+        }
+
+        // Sayfa Yüklenirken Kaydedilmiş Tema Renklerini Yükle
+        document.addEventListener("DOMContentLoaded", () => {
+            const primaryColor = localStorage.getItem("primaryColor");
+            const secondaryColor = localStorage.getItem("secondaryColor");
+            if (primaryColor) document.documentElement.style.setProperty('--primary-color', primaryColor);
+            if (secondaryColor) document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+        });
+
+        // Hesap Devre Dışı Bırak veya Kalıcı Sil
+        function deactivateAccount() {
+            if (confirm("Hesabınızı devre dışı bırakmak istediğinize emin misiniz?")) {
+                alert("Hesabınız devre dışı bırakıldı.");
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm("Hesabınızı kalıcı olarak silmek istediğinize emin misiniz? Bu işlem geri alınamaz!")) {
+                alert("Hesabınız kalıcı olarak silindi.");
+            }
+        }
+
+        // Dil metinleri
+        const translations = {
+            en: {
+                "welcome": "Welcome, AND_Bekos.!",
+                "account-info-title": "Account Information",
+                "account-info-desc": "Edit your public and private information.",
+                "username": "Username:",
+                "email": "Email:",
+                "profile-pic": "Profile Picture:",
+                "update-info": "Update Information",
+                "security": "Security",
+                "change-password-desc": "Change your password and manage your security.",
+                "new-password": "New Password:",
+                "update-password": "Update Password",
+                "enable-2fa": "Enable 2FA",
+                "privacy-center": "Privacy Center",
+                "email-notifications": "Enable Email Notifications",
+                "change-theme": "Change Theme",
+                "toggle-theme": "Light/Dark Mode",
+                "language-title": "Language Selection",
+                "social-media": "Connect with Social Media Accounts",
+                "connect-google": "Connect with Google",
+                "connect-facebook": "Connect with Facebook",
+                "connect-apple": "Connect with Apple",
+                "profile-status": "Profile Status",
+                "current-status": "Current Status:",
+                "toggle-status": "Online/Offline",
+                "custom-theme": "Custom Theme Colors",
+                "primary-color": "Primary Color:",
+                "secondary-color": "Secondary Color:",
+                "deactivate-account": "Deactivate Account",
+                "delete-account": "Delete Account"
+            },
+            tr: {
+                "welcome": "Hoş geldiniz, AND_Bekos.!",
+                "account-info-title": "Hesap Bilgileri",
+                "account-info-desc": "Açık ve özel bilgilerinizi düzenleyin.",
+                "username": "Kullanıcı Adı:",
+                "email": "Email:",
+                "profile-pic": "Profil Resmi:",
+                "update-info": "Bilgileri Güncelle",
+                "security": "Güvenlik",
+                "change-password-desc": "Şifrenizi değiştirin, güvenliğinizi yönetin.",
+                "new-password": "Yeni Şifre:",
+                "update-password": "Şifreyi Güncelle",
+                "enable-2fa": "2FA'yı Etkinleştir",
+                "privacy-center": "Gizlilik merkezi",
+                "email-notifications": "E-posta Bildirimlerini Aç",
+                "change-theme": "Tema Değiştir",
+                "toggle-theme": "Açık/Koyu Mod",
+                "language-title": "Dil Seçimi",
+                "social-media": "Sosyal Medya Hesaplarıyla Bağlan",
+                "connect-google": "Google ile Bağlan",
+                "connect-facebook": "Facebook ile Bağlan",
+                "connect-apple": "Apple ile Bağlan",
+                "profile-status": "Profil Durumu",
+                "current-status": "Şu anki Durum:",
+                "toggle-status": "Çevrimiçi/Çevrimdışı",
+                "custom-theme": "Özel Tema Renkleri",
+                "primary-color": "Birincil Renk:",
+                "secondary-color": "İkincil Renk:",
+                "deactivate-account": "Hesabı Devre Dışı Bırak",
+                "delete-account": "Hesabı Kalıcı Olarak Sil"
+            }
+        };
+
+        // Dil güncelleme işlevi
+        function updateLanguage() {
+            const language = document.getElementById("language-select").value;
+            localStorage.setItem("language", language);
+
+            document.querySelectorAll("[data-lang-key]").forEach(element => {
+                const key = element.getAttribute("data-lang-key");
+                element.textContent = translations[language][key];
+            });
+        }
+
+        // Sayfa yüklendiğinde seçili dili ayarla
+        document.addEventListener("DOMContentLoaded", () => {
+            const language = localStorage.getItem("language") || "tr";
+            document.getElementById("language-select").value = language;
+            updateLanguage();
+        });
+    </script>
+</body>
+</html>

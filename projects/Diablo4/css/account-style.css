@@ -1,0 +1,261 @@
+/* Genel Ayarlar */
+body {
+    background-image: url('images/your-background-image.png'); /* Arka plan resmini buraya ekleyin */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+/* Hamburger Menü düğmesi */
+.menu-icon {
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #000000;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+/* Yan Menü (Sidebar) */
+.sidebar {
+    width: 250px;
+    background-color: #000000;
+    color: #ffffff;
+    padding-top: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1;
+    transform: translateX(-260px); /* İlk açıldığında gizli */
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+/* Yan menü başlığı */
+.sidebar h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Menü bağlantılarını stilize etme */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* İçerik Alanı */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    max-width: 800px;
+    width: calc(100% - 290px);
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    overflow: auto;
+}
+
+.content h1 {
+    color: #f1f1f1;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Her Bölümün Genel Ayarları */
+.section {
+    background-color: #000000;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.section h2 {
+    color: #d1d1d1;
+    margin-bottom: 10px;
+}
+
+/* Formlar */
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+form label {
+    color: #d1d1d1;
+    margin: 10px 0 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="file"],
+form input[type="color"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+form button {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #000000;
+}
+
+/* Genel Butonlar */
+button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #000000;
+}
+
+input[type="color"] {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Mesajlar */
+.message {
+    font-size: 14px;
+    color: #00ff00;
+    margin-top: 5px;
+}
+
+/* Profil Resmi Önizleme */
+.profile-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    border: 2px solid #000000;
+}
+
+/* Tablo */
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid #000000;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    background-color: #000000;
+}
+
+/* Sosyal Medya Butonları */
+.section button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+.section button:hover {
+    background-color: #000000;
+}
+
+/* Tema Renkleri için Renk Seçici */
+input[type="color"] {
+    border: none;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Dil Seçimi */
+select {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+}

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>İletişim - Diablo 4</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Genel yazı tipi ve renkler */
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #ddd;
+            background-color: #1a1a1a;
+        }
+
+        /* Canlı destek simgesi */
+        /* Canlı destek simgesi */
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-button {
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.chat-button:hover {
+    background-color: #0056b3;
+}
+
+/* Sohbet penceresi */
+.chat-box {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 350px; /* Genişliği artırıldı */
+    max-height: 500px; /* Yüksekliği artırıldı */
+    background-color: #2c2c2c;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-size: 0.9em;
+}
+
+.chat-header {
+    padding: 12px;
+    background-color: #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #555;
+}
+
+.chat-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.chat-messages {
+    max-height: 350px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #333;
+    border-bottom: 1px solid #555;
+}
+
+.message {
+    margin-bottom: 10px;
+    line-height: 1.4em;
+}
+
+.bot-message {
+    color: #00bcd4;
+}
+
+.user-message {
+    text-align: right;
+    color: #fff;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #444;
+    border-top: 1px solid #555;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #666;
+    background-color: #222;
+    color: white;
+    margin-right: 5px;
+}
+
+.chat-input button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
+
+/* Genel Survey Stili */
+.survey {
+    position: fixed;
+    top: 50%;
+    left: 20px; /* Anketi sol tarafa yerleştiriyoruz */
+    transform: translateY(-50%);
+    background-color: #1b1b1bc9; /* Koyu siyah arka plan */
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.6);
+    color: #f1f1f1;
+    width: 320px;
+    z-index: 1000;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: auto; /* Yalnızca dikey kaydırma */
+    max-height: 90vh; /* Sayfanın %90'ı kadar yükseklik sınırı */
+}
+
+/* Diğer CSS kuralları burada devam eder... */
+
+
+/* Diğer CSS kuralları burada devam eder... */
+
+
+/* Hover efekti */
+.survey:hover {
+    background-color: #2020206e; /* Hoverda biraz daha açık gri */
+    box-shadow: 0 0 30px rgb(255, 80, 80), 0 0 40px rgba(255, 0, 0, 0.8);
+}
+
+/* Başlık ve etiketler */
+.survey h4 {
+    text-align: center;
+    font-size: 1.4em;
+    color: #e60000;
+    margin-bottom: 10px;
+}
+
+.survey h2 {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #b0b0b0;
+}
+
+/* Anket soruları */
+.survey form {
+    display: flex;
+    flex-direction: column;
+}
+
+.survey form label {
+    font-weight: bold;
+    font-size: 0.95em;
+    margin-top: 15px;
+    color: #e60000;
+    text-transform: uppercase;
+}
+
+/* Geri kalan form stil ayarları */
+.survey form input[type="text"], 
+.survey form select, 
+.survey form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #333;
+    color: #ddd;
+    border: 2px solid #444;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Anket seçenekleri için checkbox ve radio butonları */
+.survey form input[type="radio"], 
+.survey form input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Submit buton stil */
+.survey form input[type="submit"] {
+    background-color: #e60000;
+    cursor: pointer;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.survey form input[type="submit"]:hover {
+    background-color: #b20000;
+    transform: scale(1.1);
+}
+
+/* Hoverda input ve text alanları */
+.survey form input[type="text"]:hover, 
+.survey form select:hover, 
+.survey form textarea:hover {
+    background-color: #44444456;
+}
+
+/* Anketin dışında kalan alanlarda dengeleme */
+.survey {
+    transition: all 0.5s ease;
+}
+
+/* Geçiş animasyonu */
+.survey-question {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.survey-question.show {
+    opacity: 1;
+}
+
+/* Likert ölçeği */
+.rating {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 30px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.rating input[type="radio"]:checked ~ label {
+    color: #e60000;
+}
+
+/* Evet/Hayır sorusu */
+input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
+    font-weight: bold;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #e60000; /* Red accent for the radio buttons */
+}
+
+/* Textarea (Açık uçlu) */
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    background-color: #33333342;
+    color: #ddd;
+    border: 2px solid #4444443b;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+textarea:hover {
+    background-color: #44444446;
+}
+
+/* Checkbox ve Likert ölçeği arasındaki mesafe */
+.survey form .question {
+    margin-bottom: 20px;
+}
+
+/* Derecelendirme Butonları */
+.survey .rating {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.survey .rating input[type="radio"] {
+    display: none; /* Radio butonlarını gizle */
+}
+
+.survey .rating label {
+    font-size: 1.2em;
+    color: #ddd;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #444;
+    border-radius: 5px;
+}
+
+.survey .rating label:hover {
+    background-color: #e60000;
+    color: white;
+    border-color: #e60000;
+}
+
+.survey .rating input[type="radio"]:checked + label {
+    background-color: #e60000;
+    color: white;
+    border-color: #e60000;
+}
+
+/* Pop-up stili */
+.popup {
+    display: none; /* Başlangıçta görünmesin */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    text-align: center;
+}
+
+/* Pop-up içerik */
+.popup-content {
+    position: relative;
+}
+
+/* Kapatma simgesi */
+.popup-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+	<div class="page page-contact">
+		<div class="header">
+			<div>
+				<a href="index.html" id="logo"><img src="images/logo.png" alt="log"></a> <span>Diablo 4 ile Karanlık Maceların Keyfine Bakın</span>
+				<ul>
+					<li>
+						<a href="index.html">Anasayfa</a> <span>Diablo'ya hızlı erişim</span>
+					</li>
+					<li>
+						<a href="about.html">Hakkında</a> <span>Diablo'yı Keşfet</span>
+					</li>
+					<li>
+						<a href="news.html">Haberler</a> <span>Gelişmelerden haberdar ol</span>
+					</li>
+					<li class="selected">
+						<a href="contact.html">İletişim</a> <span>Bize ulaşın.</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="body">
+			<div class="contact">
+				<div>
+					<h4>Bize Ulaşın</h4>
+				</div>
+				<form action="index.html">
+					<h2>Diablo 4 ile iletişime geçin!</h2>
+					<h4>
+						Her türlü soru, öneri ve geri bildiriminiz için bizimle iletişime geçebilirsiniz. Aşağıdaki formu doldurarak mesajınızı bize iletin, en kısa sürede size geri dönüş yapacağız. Diablo 4 dünyasıyla ilgili merak ettiğiniz her şey için buradayız!
+					</h4>
+					<input type="text" id="name" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Full Name':this.value;" value="Adınız Soyadınız">
+					<input type="text" id="email" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" value="E-mail adresiniz">
+					<input type="text" id="subject" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Subject':this.value;" value="Konu">
+					<textarea name="message" id="message" cols="30" rows="10" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Message':this.value;">Mesaj</textarea>
+					<label for="subscribe" class="subscribe">
+						<input type="checkbox" id="subscribe">
+						Haber Bültenize abone olun</label>
+					<label for="agree" class="agree">
+						<input type="checkbox" id="agree">
+						Şartlar ve Koşulları kabul ediyorum</label>
+					<input type="button" value="" id="submit">
+				</form>
+			</div>
+			<div class="sidebar">
+			</div>
+			<div class="section">
+			</div>
+		</div>
+		<div class="footer">
+			<div>
+				<ul>
+					<li>
+						<a href="index.html">Anasayfa</a>
+					</li>
+					<li>
+						<a href="about.html">Hakkında</a>
+					</li>
+					<li>
+						<a href="news.html">Haberler</a>
+					</li>
+					<li>
+						<a href="contact.html">Ulaşım Bilgileri</a>
+					</li>
+				</ul>
+				<p>
+					&#169; Copyright &#169; 1955.Diablo 4 Bütün hakları saklıdır.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Canlı Destek Butonu ve Sohbet Penceresi -->
+	<div class="chat-container">
+        <div class="chat-button" onclick="toggleChat()">💬</div>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <span>Canlı Destek</span>
+                <button onclick="toggleChat()">✕</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <strong>Berke:</strong> Merhaba, nasıl yardımcı olabilirim?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Mesajınızı yazın veya 😊">
+                <button onclick="sendMessage()">Gönder</button>
+            </div>
+        </div>
+    </div>
+
+	<div class="body">
+		<div class="survey">
+			<div>
+				<h4>Oyun Tercihlerinizi Paylaşın!</h4>
+				<h2>Anketimize katılın ve MMORPG dünyasını şekillendirin.</h2>
+				<form id="survey-form">
+					<label for="favorite-type">Hangi tür MMORPG oyunlarını tercih ediyorsunuz?</label>
+					<select id="favorite-type" name="favorite-type">
+						<option value="pvp">PvP (Oyuncuya Karşı Oyuncu)</option>
+						<option value="pve">PvE (Oyuncuya Karşı Çevre)</option>
+						<option value="sandbox">Sandbox (Açık dünya keşfi)</option>
+						<option value="story">Hikaye Odaklı</option>
+						<option value="other">Diğer</option>
+					</select>
+	
+					<!-- Evet/Hayır Sorusu -->
+					<label for="played_before">Diablo 4'ü daha önce oynadınız mı?</label>
+					<input type="radio" id="yes" name="played_before" value="yes"> Evet
+					<input type="radio" id="no" name="played_before" value="no"> Hayır
+		 
+					<br><br>
+		
+					<label for="play-time">Günde ne kadar süre oyun oynuyorsunuz?</label>
+					<select id="play-time" name="play-time">
+						<option value="less-than-1">1 saatten az</option>
+						<option value="1-3">1-3 saat</option>
+						<option value="3-5">3-5 saat</option>
+						<option value="more-than-5">5 saatten fazla</option>
+					</select>
+	
+					<!-- Çoktan Seçmeli Sorular -->
+					<label for="features">Diablo 4'ün hangi özelliklerinden hoşlandınız?</label><br>
+					<input type="checkbox" id="combat" name="features" value="combat"> Savaş Sistemi<br>
+					<input type="checkbox" id="story" name="features" value="story"> Hikaye<br>
+					<input type="checkbox" id="graphics" name="features" value="graphics"> Grafikler<br>
+					<input type="checkbox" id="multiplayer" name="features" value="multiplayer"> Çoklu Oyuncu Modu<br>
+				 
+					<br><br>
+		
+					<label for="favorite-game">Favori MMORPG oyununuz nedir ve neden?</label>
+					<textarea id="favorite-game" name="favorite-game" rows="4" placeholder="Oyun adını ve neden favoriniz olduğunu belirtin."></textarea>
+		
+					<label>
+						<input type="checkbox" id="newsletter" name="newsletter">
+						Anket sonuçlarını öğrenmek için e-posta bildirimlerine abone olun.
+					</label>
+	
+					<!-- Açık Uçlu (Textarea) Sorusu -->
+					<label for="feedback">Diablo 4 hakkında ne düşünüyorsunuz?</label>
+					<textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Görüşlerinizi buraya yazabilirsiniz..."></textarea>
+				 
+					<br><br>
+				 
+					<!-- Form Gönderme Butonu -->
+					<input type="submit" value="Anketi Gönder" id="submitSurvey">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Pop-up mesaj için div -->
+	<div id="popup" class="popup">
+		<div class="popup-content">
+			<span class="popup-close" onclick="closePopup()">&times;</span>
+			<p>Anketiniz gönderilmiştir!</p>
+		</div>
+	</div>
+	
+	
+
+
+    <script>
+		// Sohbet penceresini açma/kapatma işlevi
+function toggleChat() {
+    const chatBox = document.getElementById('chatBox');
+    chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+}
+
+// Mesaj gönderme işlevi
+function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const messageText = userInput.value.trim();
+
+    if (messageText !== '') {
+        // Kullanıcı mesajını göster
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user-message');
+        userMessage.innerHTML = `<strong>Ben:</strong> ${messageText}`;
+        chatMessages.appendChild(userMessage);
+
+        // Otomatik kaydırma
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Kullanıcı mesajını temizle
+        userInput.value = '';
+
+        // Bot yanıtları
+        let botReplyText = '';
+
+        if (messageText.toLowerCase().includes('site hakkında bilgi')) {
+            botReplyText = 'Sitemiz, Diablo 4 dünyası hakkında en güncel bilgileri sunar. Haberler, güncellemeler ve topluluk etkinlikleri ile sizi bilgilendirmek için buradayız!';
+        } else if (messageText.toLowerCase().includes('teşekkür')) {
+            botReplyText = 'Rica ederim! Başka bir sorunuz varsa buradayım.';
+        } else if (messageText.toLowerCase().includes('yardım')) {
+            botReplyText = 'Size nasıl yardımcı olabilirim? Sorularınızı buraya yazabilirsiniz.';
+        } else {
+            botReplyText = 'Maalesef, bu konuda yardımcı olamıyorum. Başka bir sorunuz varsa lütfen sorun.';
+        }
+
+        // Bot yanıtını göster
+        setTimeout(() => {
+            const botReply = document.createElement('div');
+            botReply.classList.add('message', 'bot-message');
+            botReply.innerHTML = `<strong>Berke:</strong> ${botReplyText}`;
+            chatMessages.appendChild(botReply);
+
+            // Otomatik kaydırma
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+    }
+}
+
+// Enter tuşuna basıldığında mesaj gönderme
+document.getElementById('userInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Formun varsayılan submit davranışını engeller
+        sendMessage();
+    }
+});
+
+// Anketi gönderme işlemi
+document.getElementById('submitSurvey').addEventListener('click', function(event) {
+    event.preventDefault();  // Formun varsayılan submit davranışını engeller
+
+    const surveyForm = document.getElementById('survey-form');
+    const feedback = document.getElementById('feedback').value.trim();
+
+    if (feedback === '') {
+        alert('Lütfen geri bildiriminizi yazın!');
+        return;
+    }
+
+    surveyForm.style.display = 'none';  // Formu gizle
+
+    // Teşekkür mesajı
+    const thankYouMessage = document.createElement('div');
+    thankYouMessage.innerHTML = '<h2>Teşekkür ederiz! Anketinizi aldık.</h2>';
+    thankYouMessage.style.color = '#fff';
+    thankYouMessage.style.textAlign = 'center';
+    document.body.appendChild(thankYouMessage);
+});
+	</script>
+	
+</body>
+</html>
